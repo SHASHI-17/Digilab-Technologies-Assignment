@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans} from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+
 
 const inter = Noto_Sans({
   style: "normal",
@@ -26,14 +26,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
+
             {children}
-          </ThemeProvider>
+
         </body>
     </html>
   );
