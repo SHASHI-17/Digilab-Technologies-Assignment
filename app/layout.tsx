@@ -15,7 +15,8 @@ export const metadata: Metadata = {
   manifest:'/manifest.webmanifest',
   icons:{
     icon:'/express.png'
-  }
+  },
+  applicationName:"theme-color"
 };
 
 export default function RootLayout({
