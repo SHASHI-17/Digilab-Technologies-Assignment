@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Noto_Sans} from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import "./globals.css";
-
 
 const inter = Noto_Sans({
   style: "normal",
@@ -12,11 +11,10 @@ const inter = Noto_Sans({
 export const metadata: Metadata = {
   title: "DigiLab Technologies Assignment",
   description: "PWA setup + Push Notifications",
-  manifest:'/manifest.webmanifest',
-  icons:{
-    icon:'/express.png'
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: "/express.png",
   },
-  applicationName:"theme-color"
 };
 
 export default function RootLayout({
@@ -26,11 +24,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-
-            {children}
-
-        </body>
+      <head>
+        <meta name="theme-color" content="#000000" />
+      </head>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
