@@ -7,6 +7,7 @@
     "name": "digilab assignment",
     "short_name": "digilab assignment",
     "description": "Evalution for the round 1",
+    "prefer_related_applications": true,
     "icons": [
         {
             "src": "/icon-192x192.png",
