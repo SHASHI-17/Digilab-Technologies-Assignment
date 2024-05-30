@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body{
+  background-color: black;
+}
 
 @keyframes pulse1 {
     0% {

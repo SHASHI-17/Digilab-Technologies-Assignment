@@ -90,7 +90,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full mx-auto rounded-md h-screen overflow-hidden">
+    <div className="w-full mx-auto rounded-md h-screen overflow-hidden z-[999]">
       <Vortex
         backgroundColor="black"
         rangeY={800}
