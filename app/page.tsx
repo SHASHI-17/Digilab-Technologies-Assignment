@@ -64,6 +64,7 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { Vortex } from "@/components/ui/vortex";
 import Image from "next/image";
 import addNotification from "react-push-notification";
+import useServiceWorker from "./hooks/useServiceWorker";
 
 export default function Home() {
   const [isBellVisible, setIsBellVisible] = useState(false);
@@ -80,7 +81,7 @@ export default function Home() {
     //   theme: 'darkblue',
     //   vibrate: 100,
     // });
-
+    useServiceWorker();
     if (!("Notification" in window)) {
       alert("Browser does not support notifications");
     } else if (Notification.permission === "granted") {
