@@ -30,8 +30,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="theme-color" content="#000000" />
-                <title>Next.js PushAlert Example</title>
-                <script
+      </head>
+      <body className={inter.className}>
+        {children}
+        <script
                     type="text/javascript"
                     dangerouslySetInnerHTML={{
                         __html: `
@@ -44,8 +46,7 @@ export default function RootLayout({
                         `,
                     }}
                 />
-      </head>
-      <body className={inter.className}>{children}</body>
+        </body>
     </html>
   );
 }
