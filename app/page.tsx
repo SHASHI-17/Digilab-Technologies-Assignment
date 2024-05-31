@@ -69,7 +69,7 @@ export default function Home() {
   const [isBellVisible, setIsBellVisible] = useState(false);
 
   const notificationPush = (
-    notificationText = "Thank You enabling notifications!"
+    notificationText = "Thank You for enabling notifications!"
   ) => {
     // addNotification({
     //   title: 'DigiLabs Assignment',
@@ -81,17 +81,44 @@ export default function Home() {
     //   vibrate: 100,
     // });
 
-    if (!("Notification" in window)) {
-      alert("Browser does not support notifications");
-    } else if (Notification.permission === "granted") {
-      const notification = new Notification(notificationText);
-    } else if (Notification.permission !== "denied") {
-      Notification.requestPermission().then((permission) => {
-        if (permission === "granted") {
-          const notification = new Notification(notificationText);
-        }
+    // if (!("Notification" in window)) {
+    //   alert("Browser does not support notifications");
+    // } else if (Notification.permission === "granted") {
+    //   const notification = new Notification(notificationText);
+    // } else if (Notification.permission !== "denied") {
+    //   Notification.requestPermission().then((permission) => {
+    //     if (permission === "granted") {
+    //       const notification = new Notification(notificationText);
+    //     }
+    //   });
+    // }
+
+    if (!('Notification' in window)) {
+      alert('Browser does not support notifications');
+    } else if (Notification.permission === 'granted') {
+      alert('Notification permission already granted.');
+      new Notification(notificationText, {
+        body: 'Check out our latest updates!',
+        icon: '/express.png',
       });
+    } else if (Notification.permission !== 'denied') {
+      Notification.requestPermission().then((permission) => {
+        if (permission === 'granted') {
+          alert('Notification permission granted after request.');
+          new Notification(notificationText, {
+            body: 'Check out our latest updates!',
+            icon: '/express.png',
+          });
+        } else {
+          alert('Notification permission denied after request.');
+        }
+      }).catch(error => {
+        alert(`Error requesting notification permission: ${error}`);
+      });
+    } else {
+      alert('Notification permission denied.');
     }
+
   };
 
   useEffect(() => {
