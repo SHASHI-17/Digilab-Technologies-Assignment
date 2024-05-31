@@ -68,6 +68,21 @@ import addNotification from "react-push-notification";
 export default function Home() {
   const [isBellVisible, setIsBellVisible] = useState(false);
 
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/sw.js')
+          .then((registration) => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch((error) => {
+            console.error('Service Worker registration failed:', error);
+          });
+      });
+    }
+  }, []);
+
   const notificationPush = (
     notificationText = "Thank You for enabling notifications!"
   ) => {
@@ -80,20 +95,7 @@ export default function Home() {
     //   theme: 'darkblue',
     //   vibrate: 100,
     // });
-    useEffect(() => {
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker
-            .register('/sw.js')
-            .then((registration) => {
-              console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch((error) => {
-              console.error('Service Worker registration failed:', error);
-            });
-        });
-      }
-    }, []);
+
     if (!("Notification" in window)) {
       alert("Browser does not support notifications");
     } else if (Notification.permission === "granted") {
