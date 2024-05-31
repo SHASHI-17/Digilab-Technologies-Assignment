@@ -2,7 +2,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
-import { useServiceWorker } from "./hooks/useServiceWorker";
 
 
 const inter = Noto_Sans({
@@ -25,11 +24,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const service=()=>{
-    'use client';
-    useServiceWorker();
-  }
-  service();
+
   return (
     <html lang="en">
       <head>
