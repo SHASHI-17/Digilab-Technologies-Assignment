@@ -47,7 +47,7 @@
 //     <HoverBorderGradient onClick={notificationPush}
 //         containerClassName="rounded-full"
 //         as="button"
-        
+
 //         className="text-white px-5 py-3 flex items-center space-x-2"
 //       >
 //         <span className="text-lg">Send Notification</span>
@@ -58,8 +58,8 @@
 //   );
 // }
 
-'use client'
-import { useEffect, useState } from 'react';
+"use client";
+import { useEffect, useState } from "react";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { Vortex } from "@/components/ui/vortex";
 import Image from "next/image";
@@ -68,16 +68,30 @@ import addNotification from "react-push-notification";
 export default function Home() {
   const [isBellVisible, setIsBellVisible] = useState(false);
 
-  const notificationPush = () => {
-    addNotification({
-      title: 'DigiLabs Assignment',
-      message: 'Visit my website',
-      duration: 7000,
-      icon: '/express.png',
-      native: true,
-      theme: 'darkblue',
-      vibrate: 100,
-    });
+  const notificationPush = (
+    notificationText = "Thank You enabling notifications!"
+  ) => {
+    // addNotification({
+    //   title: 'DigiLabs Assignment',
+    //   message: 'Visit my website',
+    //   duration: 7000,
+    //   icon: '/express.png',
+    //   native: true,
+    //   theme: 'darkblue',
+    //   vibrate: 100,
+    // });
+
+    if (!("Notification" in window)) {
+      alert("Browser does not support notifications");
+    } else if (Notification.permission === "granted") {
+      const notification = new Notification(notificationText);
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then((permission) => {
+        if (permission === "granted") {
+          const notification = new Notification(notificationText);
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -103,12 +117,19 @@ export default function Home() {
           DigiLab Technologies Assignment
         </h1>
         <p className="text-white text-sm md:text-2xl max-w-2xl mt-6 text-center">
-          This is chemical burn. It&apos;ll hurt more than you&apos;ve ever been burned and you&apos;ll have a scar.
+          This is chemical burn. It&apos;ll hurt more than you&apos;ve ever been
+          burned and you&apos;ll have a scar.
         </p>
         {isBellVisible && (
           <div className="mt-[5.5rem] bg-transparent">
             <div className="pulse relative flex items-center justify-center h-36 w-36 bg-transparent rounded-full mx-auto duration-150 transition-all">
-              <Image src="/bell.svg" alt="bell" width={100} height={100} className="z-10 animate-ping" />
+              <Image
+                src="/bell.svg"
+                alt="bell"
+                width={100}
+                height={100}
+                className="z-10 animate-ping"
+              />
               <div className="absolute h-full w-full bg-blue-300 rounded-full opacity-70 animate-pulse1"></div>
               <div className="absolute h-full w-full bg-emerald-500 rounded-full opacity-70 animate-pulse2"></div>
             </div>
@@ -116,7 +137,7 @@ export default function Home() {
         )}
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-[7.3rem]">
           <HoverBorderGradient
-            onClick={notificationPush}
+            onClick={()=>notificationPush()}
             containerClassName="rounded-full"
             as="button"
             className="text-white  px-14 py-3 sm:px-10 sm:py-3 flex items-center space-x-2"
