@@ -64,13 +64,14 @@ import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
 import { Vortex } from "@/components/ui/vortex";
 import Image from "next/image";
 import addNotification from "react-push-notification";
+import { useServiceWorker } from "./hooks/useServiceWorker";
 
 export default function Home() {
   const [isBellVisible, setIsBellVisible] = useState(false);
-
-  const notificationPush = (
-    notificationText = "Thank You for enabling notifications!"
-  ) => {
+  useServiceWorker();
+  // const notificationPush = (
+  //   notificationText = "Thank You for enabling notifications!"
+  // ) => {
     // addNotification({
     //   title: 'DigiLabs Assignment',
     //   message: 'Visit my website',
@@ -92,34 +93,47 @@ export default function Home() {
     //     }
     //   });
     // }
-
-    if (!('Notification' in window)) {
-      alert('Browser does not support notifications');
-    } else if (Notification.permission === 'granted') {
-      alert('Notification permission already granted.');
-      new Notification(notificationText, {
-        body: 'Check out our latest updates!',
-        icon: '/express.png',
-      });
-    } else if (Notification.permission !== 'denied') {
-      Notification.requestPermission().then((permission) => {
-        if (permission === 'granted') {
-          alert('Notification permission granted after request.');
-          new Notification(notificationText, {
+    const notificationText ='Hello'
+    const requestPermissionAndNotify = () => {
+      if (!('Notification' in window)) {
+        alert('Browser does not support notifications');
+      } else if (Notification.permission === 'granted') {
+        sendNotification();
+      } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission().then((permission) => {
+          if (permission === 'granted') {
+            sendNotification();
+          } else {
+            alert('Notification permission denied.');
+          }
+        }).catch(error => {
+          alert(`Error requesting notification permission: ${error}`);
+        });
+      } else {
+        alert('Notification permission denied.');
+      }
+    };
+  
+    const sendNotification = () => {
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.ready.then((registration) => {
+          registration.showNotification(notificationText, {
             body: 'Check out our latest updates!',
             icon: '/express.png',
+            data: '/'
+          }).then(() => {
+            alert('Notification should have been shown.');
+          }).catch(error => {
+            alert(`Error showing notification: ${error.message}`);
           });
-        } else {
-          alert('Notification permission denied after request.');
-        }
-      }).catch(error => {
-        alert(`Error requesting notification permission: ${error}`);
-      });
-    } else {
-      alert('Notification permission denied.');
-    }
-
+        }).catch(error => {
+          alert(`Service Worker not ready: ${error.message}`);
+        });
+      } else {
+        alert('Service Worker not supported.');
+      }
   };
+
 
   useEffect(() => {
     setIsBellVisible(true);
@@ -164,7 +178,7 @@ export default function Home() {
         )}
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-[7.3rem]">
           <HoverBorderGradient
-            onClick={()=>notificationPush()}
+            onClick={requestPermissionAndNotify}
             containerClassName="rounded-full"
             as="button"
             className="text-white  px-14 py-3 sm:px-10 sm:py-3 flex items-center space-x-2"
