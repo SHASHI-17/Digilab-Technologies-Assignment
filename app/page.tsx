@@ -108,7 +108,6 @@ export default function Home() {
         <p className="text-gray-400 mb-8">Lorem ipsum dolor sit amet.</p>
       </div>
       <div className="relative mb-8 flex items-center justify-center mt-10">
-        {/* Circular Waves */}
         <div className="absolute w-full h-full flex items-center justify-center">
           <div className="wave absolute w-[348px] h-[348px] rounded-full"></div>
           <div className="wave absolute w-[348px] h-[348px] rounded-full opacity-50"></div>
@@ -119,7 +118,6 @@ export default function Home() {
           <div className="wave absolute w-[160px] h-[160px] rounded-full"></div>
           <div className="wave absolute w-[160px] h-[160px] rounded-full opacity-50"></div>
         </div>
-        {/* Bell Icon */}
         <div className="relative w-24 h-24 rounded-full bg-gradient-to-b from-orange-400 to-orange-900 via-orange-700  to flex items-center justify-center z-10">
           <Image
             src="/bell.svg"
