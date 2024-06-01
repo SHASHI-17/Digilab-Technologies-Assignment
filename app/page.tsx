@@ -125,10 +125,9 @@ export default function Home() {
           <Image src="/bell.svg" alt="bell" width={50} height={50} />
         </div>
       </div>
-      <button className="mt-[140px] text-[13px] font-bold  bg-gradient-to-r from-[#1e080b] to-[#2b1002] via-[#f5563a] border border-l-[0] border-r-[2px]  border-orange-800 border-solid border-opacity-100 shadow-md shadow-rgba(0, 0, 0, 0.12) gap-[8px] px-[6.5rem]  py-2 rounded-lg text-white text-lg">
+      <button className="mt-[140px] text-[12px] sm:text-[14px] font-bold  bg-gradient-to-r from-[#1e080b] to-[#2b1002] via-[#f5563a] border border-l-[0] border-r-[2px]  border-orange-800 border-r-orange-600 border-solid border-opacity-100 shadow-md shadow-rgba(0, 0, 0, 0.12) gap-[8px] px-[5rem] sm:px-[6rem]  py-2 rounded-lg text-white text-lg">
         Send Notification
       </button>
-
 
     </div>
   );
