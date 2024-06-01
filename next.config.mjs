@@ -2,7 +2,6 @@ import withPWA from 'next-pwa';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Your existing Next.js config can go here
 };
 
 const pwaConfig = {
