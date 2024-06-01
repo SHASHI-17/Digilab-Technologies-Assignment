@@ -127,7 +127,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <button className="mt-[140px] text-[13px] font-bold  bg-gradient-to-r from-[#1e080b] to-[#341303] via-[#9b1b04] border border-orange-800 border-solid border-opacity-100 shadow-md shadow-rgba(0, 0, 0, 0.12) gap-[8px] px-[7rem]  py-2 rounded-lg text-white text-lg">
+      <button className="mt-[140px] text-[13px] font-bold  bg-gradient-to-r from-[#1e080b] to-[#341303] via-[#9b1b04] border border-orange-800 border-solid border-opacity-100 shadow-md shadow-rgba(0, 0, 0, 0.12) gap-[8px] px-[6.5rem]  py-2 rounded-lg text-white text-lg">
   Send Notification
 </button>
 
