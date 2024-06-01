@@ -9,15 +9,18 @@ export default function Home() {
   const [isBellVisible, setIsBellVisible] = useState(false);
 
   useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
         navigator.serviceWorker
-          .register('/sw.js')
+          .register("/sw.js")
           .then((registration) => {
-            console.log('Service Worker registered with scope:', registration.scope);
+            console.log(
+              "Service Worker registered with scope:",
+              registration.scope
+            );
           })
           .catch((error) => {
-            console.error('Service Worker registration failed:', error);
+            console.error("Service Worker registration failed:", error);
           });
       });
     }
@@ -53,9 +56,9 @@ export default function Home() {
     setIsBellVisible(true);
     const timer = setTimeout(() => {
       setIsBellVisible(true);
-    }, 100); 
+    }, 100);
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -119,18 +122,12 @@ export default function Home() {
           <div className="wave absolute w-[160px] h-[160px] rounded-full opacity-50"></div>
         </div>
         <div className="relative w-24 h-24 rounded-full bg-gradient-to-b from-orange-400 to-orange-900 via-orange-700  to flex items-center justify-center z-10">
-          <Image
-            src="/bell.svg"
-            alt="bell"
-            width={50}
-            height={50}
-          />
+          <Image src="/bell.svg" alt="bell" width={50} height={50} />
         </div>
       </div>
-      <button className="mt-[140px] text-[13px] font-bold  bg-gradient-to-r from-[#1e080b] to-[#341303] via-[#9b1b04] border border-orange-800 border-solid border-opacity-100 shadow-md shadow-rgba(0, 0, 0, 0.12) gap-[8px] px-[6.5rem]  py-2 rounded-lg text-white text-lg">
-  Send Notification
-</button>
-
+      <button className="mt-[140px] text-[13px] font-bold  bg-gradient-to-r from-[#1e080b] to-[#2b1002] via-[#f5563a] border border-l-[0] border-r-[2px]  border-orange-800 border-solid border-opacity-100 shadow-md shadow-rgba(0, 0, 0, 0.12) gap-[8px] px-[6.5rem]  py-2 rounded-lg text-white text-lg">
+        Send Notification
+      </button>
 
 
     </div>
